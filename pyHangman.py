@@ -13,12 +13,7 @@ def hangman(word):
         print('You have used these letters: ', ' '.join(used_letters))
 
         # what current word is (ie W - R D)
-        word_list = []
-        for letter in word:
-            if letter in used_letters:
-                word_list.append(letter)
-            else:
-                word_list.append("-")
+        word_list = [letter if letter in used_letters else '-' for letter in word]
         print('Current word: ', ' '.join(word_list))
 
         user_letter = input('Guess a letter: ').upper()
