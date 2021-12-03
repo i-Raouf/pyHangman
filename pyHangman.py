@@ -1,7 +1,13 @@
 import string
+import random
 
-def hangman(word):
-    word = word.upper()
+def get_word():
+    file = open('words.txt', 'r')
+    words = file.readlines()
+    return str. rstrip(random.choice(words)).upper() # remove "\n" from word
+
+def hangman():
+    word = get_word()
     word_letters = set(word)  # letters in the word
     alphabet = set(string.ascii_uppercase)
     used_letters = set()  # what the user has guessed
@@ -36,4 +42,4 @@ def hangman(word):
         print('YAY! You guessed the word', word, '!!')
 
 if __name__ == '__main__':
-    hangman("hello")
+    hangman()
