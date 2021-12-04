@@ -9,8 +9,12 @@ class Hangman_ui(Frame):
     def initUI(self):
         self.master.title("pyHangman")
         self.master.resizable(False, False)
+        self.lives_var = StringVar()
+        self.word_var = StringVar()
+        self.guesses_var = StringVar()
 
-        livesLabel = Label(text="Lives: 7",anchor="e",font=font.Font(size=14))
+        livesLabel = Label(textvariable=self.lives_var,anchor="e",font=font.Font(size=14))
+        self.lives_var.set("Lives: 7")
         livesLabel.pack(fill=X, padx=10)
 
         frame = Frame()
@@ -41,14 +45,23 @@ class Hangman_ui(Frame):
 
         canvas.pack(side="left",padx=10)
 
-        wordLabel = Label(frame,anchor="center", text="H _ L L _",font=font.Font(size=20))
+        wordLabel = Label(frame,anchor="center", textvariable=self.word_var,font=font.Font(size=20))
+        self.word_var.set("H _ L L _")
         wordLabel.pack(side="right",fill=X,expand=1)
 
-        guessesLabel = Label(text="H L P K",font=font.Font(size=14))
+        guessesLabel = Label(textvariable=self.guesses_var,font=font.Font(size=14))
+        self.guesses_var.set("H L P K")
         guessesLabel.pack(fill=X,padx=20)
 
-        input_field = Entry(font=font.Font(size=14))
-        input_field.pack(fill=X,padx=50,pady=20)
+        self.input_field = Entry(font=font.Font(size=14))
+        self.input_field.pack(fill=X,padx=50,pady=20)
+        
+        self.master.bind("<Return>", self.callback)
+
+    def callback(self, event):
+        txt = self.input_field.get()
+        self.guesses_var.set(txt)
+        self.input_field.delete(0, 'end')
 
 
 def main():
