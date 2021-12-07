@@ -18,10 +18,11 @@ class Hangman_ui(Frame):
         self.guesses_var = StringVar()
         
         self.word = word
-        self.word_letters = set(word)
+        self.word_letters = set(word.replace(" ", ""))
         self.alphabet = set(string.ascii_uppercase)
-        self.used_letters = set()
+        self.used_letters = set(" ")
         self.lives = 7
+        
         
         self.initUI()
 
@@ -105,7 +106,6 @@ class Hangman_ui(Frame):
 
 def main():
     word = get_word()
-    word = "python".upper()
     root = Tk()
     app = Hangman_ui(word)
     root.geometry("600x400")
