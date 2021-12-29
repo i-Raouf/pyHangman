@@ -1,4 +1,4 @@
 # pyHangman
-simple hangman game usnig python
+simple hangman game using python
 \
 ![screenshot](screenshot.png)
